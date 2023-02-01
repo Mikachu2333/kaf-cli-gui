@@ -4,7 +4,7 @@ import fsys.dlg
 /*DSG{{*/
 mainForm = win.form(cls="kaf-cli-gui_FORM";text="kaf-cli-gui";right=521;bottom=285;acceptfiles=1;border="dialog frame";max=false)
 mainForm.add(
-align={cls="combobox";left=118;top=96;right=184;bottom=118;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=27};
+align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=27};
 author={cls="edit";left=340;top=130;right=496;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');multiline=1;z=7};
 bookname={cls="edit";left=50;top=130;right=282;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');z=5};
 button={cls="button";text="开始转换";left=414;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=23};
@@ -23,7 +23,7 @@ static={cls="static";text="TXT文件路径";left=18;top=24;right=112;bottom=54;a
 static10={cls="static";text="标题最大字数";left=294;top=210;right=376;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=19};
 static11={cls="static";text="显示帮助";left=408;top=70;right=502;bottom=120;align="center";center=1;font=LOGFONT(h=-16;name='微软雅黑');frame=1;notify=1;transparent=1;z=24};
 static12={cls="static";text="输出文件名";left=14;top=244;right=102;bottom=266;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=21};
-static2={cls="static";text="标题居中方式";left=20;top=96;right=106;bottom=118;align="center";center=1;font=LOGFONT(name='微软雅黑');group=1;transparent=1;z=3};
+static2={cls="static";text="标题居中方式";left=20;top=98;right=106;bottom=120;align="center";center=1;font=LOGFONT(name='微软雅黑');group=1;transparent=1;z=3};
 static3={cls="static";text="段落间距(em/pm)";left=10;top=170;right=124;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=8};
 static4={cls="static";text="书名";left=8;top=130;right=48;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=4};
 static5={cls="static";text="作者";left=300;top=130;right=336;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=6};
@@ -110,7 +110,8 @@ mainForm.plus.oncommand = function(id,event){
 
 mainForm.static11.oncommand = function(id,event){
 	var temp = win.loadForm("/dlg/additional.aardio",,mainForm.hwnd)
-	temp.plus.text = /*原项目地址：https://github.com/ystyle/kaf-cli
+	temp.plus.text = /*本项目地址：https://github.com/Mikachu2333/kaf-cli-gui
+原项目地址：https://github.com/ystyle/kaf-cli
 
 详述（源自原项目）：
 Usage of kaf-cli.exe:
