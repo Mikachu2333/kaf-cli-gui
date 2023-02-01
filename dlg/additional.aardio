@@ -1,0 +1,10 @@
+import win.ui
+/*DSG{{*/
+var winform = win.form(cls="kaf-cli-gui_FORM";text="Additional";right=389;bottom=293;border="thin";max=false;min=false;topmost=1)
+winform.add(
+plus={cls="plus";left=6;top=6;right=382;bottom=286;align="left";editable="edit";font=LOGFONT(h=-14;name='微软雅黑');hidesel=false;hscroll=1;multiline=1;notify=1;repeat="scale";vscroll=1;wrap=1;z=1}
+)
+/*}}*/
+
+win.loopMessage()
+return winform
