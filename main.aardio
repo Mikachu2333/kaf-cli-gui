@@ -233,8 +233,8 @@ mainForm.button.oncommand = function(id,event){
 	)
 	mainForm.button.disabledText = null
 	win.msgbox("成功",,,mainForm.hwnd)
-	}
 }
+
 
 mainForm.button2.oncommand = function(id,event){
 	mainForm.button.disabled = false
