@@ -1,6 +1,6 @@
 /*
 Copyright (c) [2023] [MIKACHU2333]
-[kaf-cli-gui] is licensed under Mulan PSL v2.
+[kaf-cli-gui-lite] is licensed under Mulan PSL v2.
 You can use this software according to the terms and conditions of the Mulan PSL v2.
 You may obtain a copy of Mulan PSL v2 at:
          http://license.coscl.org.cn/MulanPSL2
@@ -10,7 +10,6 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details.
 */
 import win.ui
-import fsys
 import fsys.dlg
 /*DSG{{*/
 mainForm = win.form(cls="kaf-cli-gui_FORM";text="kaf-cli-gui";right=521;bottom=285;acceptfiles=1;border="dialog frame";max=false)
@@ -19,10 +18,11 @@ align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(n
 author={cls="edit";left=340;top=130;right=496;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');multiline=1;z=7};
 bookname={cls="edit";left=50;top=130;right=282;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');z=5};
 button={cls="button";text="开始转换";left=302;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=23};
+button2={cls="button";text="手动选择";left=426;top=16;right=502;bottom=60;font=LOGFONT(name='微软雅黑');z=28};
 combobox={cls="combobox";left=162;top=170;right=206;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"em";"pm"};mode="dropdown";z=11};
 combobox2={cls="combobox";left=294;top=170;right=360;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"all";"epub";"mobi";"azw3"};mode="dropdown";z=14};
 combobox3={cls="combobox";left=458;top=210;right=502;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');items={"zh";"en";"de";"fr";"it";"es";"ja";"pt";"ru";"nl"};mode="dropdown";z=16};
-file_path={cls="edit";left=124;top=16;right=488;bottom=60;ah=1;autovscroll=false;aw=1;edge=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;multiline=1;z=1};
+file_path={cls="edit";left=124;top=16;right=416;bottom=60;ah=1;autovscroll=false;aw=1;edge=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;multiline=1;z=1};
 indent={cls="edit";text="2";left=460;top=170;right=484;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=13};
 match={cls="edit";left=106;top=210;right=282;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');z=18};
 maxtitle={cls="edit";text="35";left=380;top=210;right=404;bottom=232;align="center";edge=1;font=LOGFONT(name='微软雅黑');num=1;z=20};
@@ -51,21 +51,21 @@ mainForm.show()
 
 pic_path = (io._exedir + "cover.png")
 
-var temp = win.loadForm("/dlg/additional.aardio",,mainForm.hwnd)
-temp.plus.text = /*首次使用需加载kaf-cli程序。
+if(!io.exist(io._exedir + "\kaf-cli.exe")){
+	var temp = win.loadForm("/dlg/additional.aardio",,mainForm.hwnd)
+	temp.plus.text = /*首次使用需加载kaf-cli程序。
 直接将文本文档拖入主程序即可自动识别。
 
 若不指定封面，本程序将自动生成并使用文字封面。
 
 本程序仅为GUI界面，不含实际功能。
 原项目见“显示帮助”按钮。*/
-temp.show(true)
+	temp.show(true)
+}
 
-
-mainForm.onDropFiles = function(files){
+input_file = function(mainForm){
 	mainForm.plus.text = "点此添加封面图片并预览"
 	mainForm.plus.disabled = false
-	mainForm.file_path.text = files[1]
 	mainForm.bookname.text = io.splitpath(mainForm.file_path.text).name
 	mainForm.outname.text = mainForm.bookname.text
 	mainForm.redraw()
@@ -77,6 +77,11 @@ mainForm.onDropFiles = function(files){
     	win.msgboxErr("路径中不能有空格",,mainForm.hwnd)
     	mainForm.file_path.text = ""
     }
+}
+
+mainForm.onDropFiles = function(files){
+	mainForm.file_path.text = files[1]
+	input_file(mainForm)
 }
 
 get_pic = function(){
@@ -171,14 +176,12 @@ create_pic = function(title){
 mainForm.button.oncommand = function(id,event){
 	mainForm.button.disabledText = {"✶";"✸";"✹";"✺";"✹";"✷"}
 	
-	if(!io.exist(io._exedir + "cover.png")){
+	if((pic_path != (io._exedir + "cover.png")) or io.exist(io._exedir + "cover.png")){
 		create_pic(mainForm.bookname.text)
 	}
 
-	outformat_arg = mainForm.combobox2.selText
-
 	path = tostring(io.joinpath(io._exedir,"kaf-cli.exe"))
-	
+	io.open()
 	args = {
 	"-align" = mainForm.align.selText;
 	"-author" = ((mainForm.author.text != "") ? mainForm.author.text : "YSTYLE");
@@ -191,8 +194,8 @@ mainForm.button.oncommand = function(id,event){
 	"-lang" = mainForm.combobox3.selText;
 	"-match" = mainForm.match.text;
 	"-max" = tonumber(mainForm.maxtitle.text);
-	"-out" = outname_arg;
-	"-tips" = mainForm.tips.checked
+	"-out" = io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text);
+	"-tips" = tostring(mainForm.tips.checked)
 	}
 	
 	for(i,j in args){
@@ -200,9 +203,10 @@ mainForm.button.oncommand = function(id,event){
 			args[i] = null
 		}
 	}
-
+	
 	thread.invoke(
 		function(path,args,mainForm){
+			import fsys
 			import win.ui
 			import process
 			process.execute(path,args)
@@ -210,11 +214,18 @@ mainForm.button.oncommand = function(id,event){
 			mainForm.plus.disabledText = "请先置入小说再添加封面"
 			mainForm.button.text = "开始转换"
 			mainForm.file_path.text = ""
+			fsys.delete(io._exedir + "cover.png")
+			pic_path = (io._exedir + "cover.png")
 		},path,args,mainForm
 	)
 	mainForm.button.disabledText = null
 	win.msgbox("成功",,,mainForm.hwnd)
 	
+}
+
+mainForm.button2.oncommand = function(id,event){
+	mainForm.file_path.text = fsys.dlg.open("文本文档|*.txt|","选择小说",,mainForm.hwnd,,)
+	input_file(mainForm)
 }
 
 return win.loopMessage()

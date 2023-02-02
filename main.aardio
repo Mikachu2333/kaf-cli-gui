@@ -1,6 +1,6 @@
 /*
 Copyright (c) [2023] [MIKACHU2333]
-[kaf-cli-gui] is licensed under Mulan PSL v2.
+[kaf-cli-gui-full] is licensed under Mulan PSL v2.
 You can use this software according to the terms and conditions of the Mulan PSL v2.
 You may obtain a copy of Mulan PSL v2 at:
          http://license.coscl.org.cn/MulanPSL2
@@ -9,42 +9,40 @@ EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
 MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details.
 */
-
-
 import win.ui
-import fsys
 import fsys.dlg
 /*DSG{{*/
 mainForm = win.form(cls="kaf-cli-gui_FORM";text="kaf-cli-gui";right=521;bottom=285;acceptfiles=1;border="dialog frame";max=false)
 mainForm.add(
-align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=27};
-author={cls="edit";left=340;top=130;right=496;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');multiline=1;z=7};
-bookname={cls="edit";left=50;top=130;right=282;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');z=5};
-button={cls="button";text="开始转换";left=414;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=23};
-button2={cls="button";text="加载kaf-cli";left=298;top=244;right=402;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=25};
-combobox={cls="combobox";left=162;top=170;right=206;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"em";"pm"};mode="dropdown";z=11};
-combobox2={cls="combobox";left=294;top=170;right=360;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"all";"epub";"mobi";"azw3"};mode="dropdown";z=14};
-combobox3={cls="combobox";left=458;top=210;right=502;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');items={"zh";"en";"de";"fr";"it";"es";"ja";"pt";"ru";"nl"};mode="dropdown";z=16};
-file_path={cls="edit";left=124;top=16;right=488;bottom=60;ah=1;autovscroll=false;aw=1;edge=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;multiline=1;z=1};
-indent={cls="edit";text="2";left=460;top=170;right=484;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=13};
-match={cls="edit";left=106;top=210;right=282;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');z=18};
-maxtitle={cls="edit";text="35";left=380;top=210;right=404;bottom=232;align="center";edge=1;font=LOGFONT(name='微软雅黑');num=1;z=20};
-outname={cls="edit";left=106;top=244;right=282;bottom=266;edge=1;font=LOGFONT(name='微软雅黑');z=22};
-plus={cls="plus";text="点此添加封面图片并预览";left=202;top=70;right=382;bottom=120;disabled=1;font=LOGFONT(h=-14;name='微软雅黑');notify=1;z=28};
-space={cls="edit";text="1";left=130;top=170;right=160;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=9};
-static={cls="static";text="TXT文件路径";left=18;top=24;right=112;bottom=54;align="center";center=1;font=LOGFONT(h=-14;name='微软雅黑');transparent=1;z=2};
-static10={cls="static";text="标题最大字数";left=294;top=210;right=376;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=19};
-static11={cls="static";text="显示帮助";left=408;top=70;right=502;bottom=120;align="center";center=1;font=LOGFONT(h=-16;name='微软雅黑');frame=1;notify=1;transparent=1;z=24};
-static12={cls="static";text="输出文件名";left=14;top=244;right=102;bottom=266;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=21};
-static2={cls="static";text="标题居中方式";left=20;top=98;right=106;bottom=120;align="center";center=1;font=LOGFONT(name='微软雅黑');group=1;transparent=1;z=3};
-static3={cls="static";text="段落间距(em/pm)";left=10;top=170;right=124;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=8};
-static4={cls="static";text="书名";left=8;top=130;right=48;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=4};
-static5={cls="static";text="作者";left=300;top=130;right=336;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=6};
-static6={cls="static";text="输出格式";left=228;top=170;right=292;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=10};
-static7={cls="static";text="段首缩进";left=390;top=170;right=448;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=12};
-static8={cls="static";text="语言";left=420;top=210;right=454;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=15};
-static9={cls="static";text="标题正则识别";left=14;top=210;right=102;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=17};
-tips={cls="checkbox";text="是否添加kaf-cli教程";left=36;top=68;right=170;bottom=90;font=LOGFONT(name='微软雅黑');z=26}
+align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=26};
+author={cls="edit";left=340;top=130;right=496;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');multiline=1;z=6};
+bookname={cls="edit";left=50;top=130;right=282;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');z=4};
+button={cls="button";text="开始转换";left=414;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=22};
+button2={cls="button";text="加载kaf-cli";left=298;top=244;right=402;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=24};
+button3={cls="button";text="手动选择";left=426;top=16;right=502;bottom=60;font=LOGFONT(name='微软雅黑');z=29};
+combobox={cls="combobox";left=162;top=170;right=206;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"em";"pm"};mode="dropdown";z=10};
+combobox2={cls="combobox";left=294;top=170;right=360;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"all";"epub";"mobi";"azw3"};mode="dropdown";z=13};
+combobox3={cls="combobox";left=458;top=210;right=502;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');items={"zh";"en";"de";"fr";"it";"es";"ja";"pt";"ru";"nl"};mode="dropdown";z=15};
+edit={cls="edit";left=124;top=16;right=416;bottom=60;ah=1;autovscroll=false;aw=1;edge=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;multiline=1;z=28};
+indent={cls="edit";text="2";left=460;top=170;right=484;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=12};
+match={cls="edit";left=106;top=210;right=282;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');z=17};
+maxtitle={cls="edit";text="35";left=380;top=210;right=404;bottom=232;align="center";edge=1;font=LOGFONT(name='微软雅黑');num=1;z=19};
+outname={cls="edit";left=106;top=244;right=282;bottom=266;edge=1;font=LOGFONT(name='微软雅黑');z=21};
+plus={cls="plus";text="点此添加封面图片并预览";left=202;top=70;right=382;bottom=120;disabled=1;font=LOGFONT(h=-14;name='微软雅黑');notify=1;z=27};
+space={cls="edit";text="1";left=130;top=170;right=160;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=8};
+static={cls="static";text="TXT文件路径";left=18;top=24;right=112;bottom=54;align="center";center=1;font=LOGFONT(h=-14;name='微软雅黑');transparent=1;z=1};
+static10={cls="static";text="标题最大字数";left=294;top=210;right=376;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=18};
+static11={cls="static";text="显示帮助";left=408;top=70;right=502;bottom=120;align="center";center=1;font=LOGFONT(h=-16;name='微软雅黑');frame=1;notify=1;transparent=1;z=23};
+static12={cls="static";text="输出文件名";left=14;top=244;right=102;bottom=266;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=20};
+static2={cls="static";text="标题居中方式";left=20;top=98;right=106;bottom=120;align="center";center=1;font=LOGFONT(name='微软雅黑');group=1;transparent=1;z=2};
+static3={cls="static";text="段落间距(em/pm)";left=10;top=170;right=124;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=7};
+static4={cls="static";text="书名";left=8;top=130;right=48;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=3};
+static5={cls="static";text="作者";left=300;top=130;right=336;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=5};
+static6={cls="static";text="输出格式";left=228;top=170;right=292;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=9};
+static7={cls="static";text="段首缩进";left=390;top=170;right=448;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=11};
+static8={cls="static";text="语言";left=420;top=210;right=454;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=14};
+static9={cls="static";text="标题正则识别";left=14;top=210;right=102;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=16};
+tips={cls="checkbox";text="是否添加kaf-cli教程";left=36;top=68;right=170;bottom=90;font=LOGFONT(name='微软雅黑');z=25}
 )
 /*}}*/
 
@@ -54,7 +52,7 @@ mainForm.show()
 
 exist_1,exist_2,pic_path = false,false,(io._exedir + "cover.png")
 
-if(io.exist(io.joinpath(io._exedir,"\kaf-cli.exe"))){
+if(io.exist(io._exedir + "kaf-cli.exe")){
 	exist_1 = true
 }
 if(io.exist(io.joinpath(io._exedir,"\kindlegen.exe"))){
@@ -78,11 +76,9 @@ if(!(exist_1 : exist_2)){
 	temp.show(true)
 }
 
-
-mainForm.onDropFiles = function(files){
+input_file = function(mainForm){
 	mainForm.plus.text = "点此添加封面图片并预览"
 	mainForm.plus.disabled = false
-	mainForm.file_path.text = files[1]
 	mainForm.bookname.text = io.splitpath(mainForm.file_path.text).name
 	mainForm.outname.text = mainForm.bookname.text
 	mainForm.redraw()
@@ -94,6 +90,11 @@ mainForm.onDropFiles = function(files){
     	win.msgboxErr("路径中不能有空格",,mainForm.hwnd)
     	mainForm.file_path.text = ""
     }
+}
+
+mainForm.onDropFiles = function(files){
+	mainForm.file_path.text = files[1]
+	input_file(mainForm)
 }
 
 get_pic = function(){
@@ -188,11 +189,9 @@ create_pic = function(title){
 mainForm.button.oncommand = function(id,event){
 	mainForm.button.disabledText = {"✶";"✸";"✹";"✺";"✹";"✷"}
 	
-	if(!io.exist(io._exedir + "cover.png")){
+	if((pic_path != (io._exedir + "cover.png")) or io.exist(io._exedir + "cover.png")){
 		create_pic(mainForm.bookname.text)
 	}
-
-	outformat_arg = mainForm.combobox2.selText
 
 	path = tostring(io.joinpath(io._exedir,"kaf-cli.exe"))
 	
@@ -208,8 +207,8 @@ mainForm.button.oncommand = function(id,event){
 	"-lang" = mainForm.combobox3.selText;
 	"-match" = mainForm.match.text;
 	"-max" = tonumber(mainForm.maxtitle.text);
-	"-out" = outname_arg;
-	"-tips" = mainForm.tips.checked
+	"-out" = io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text);
+	"-tips" = tostring(mainForm.tips.checked)
 	}
 	
 	for(i,j in args){
@@ -220,19 +219,21 @@ mainForm.button.oncommand = function(id,event){
 
 	thread.invoke(
 		function(path,args,mainForm){
+			import fsys
 			import win.ui
 			import process
 			process.execute(path,args)
 			mainForm.plus.editable = false
 			mainForm.plus.disabledText = "请先置入小说再添加封面"
-			mainForm.button.disabled = false
 			mainForm.button.text = "开始转换"
 			mainForm.file_path.text = ""
+			fsys.delete(io._exedir + "cover.png")
+			pic_path = (io._exedir + "cover.png")
 		},path,args,mainForm
 	)
 	mainForm.button.disabledText = null
 	win.msgbox("成功",,,mainForm.hwnd)
-	
+	}
 }
 
 mainForm.button2.oncommand = function(id,event){
@@ -247,6 +248,11 @@ mainForm.button2.oncommand = function(id,event){
 		string.save(io.joinpath(io._exedir,"\kindlegen.exe"),$"\res\kindlegen.exe")
 		win.msgboxTimeout("kindlegen成功！",,1000,,mainForm.hwnd)
 	}
+}
+
+mainForm.button3.oncommand = function(id,event){
+	mainForm.file_path.text = fsys.dlg.open("文本文档|*.txt|","选择小说",,mainForm.hwnd,,)
+	input_file(mainForm)
 }
 
 return win.loopMessage()
