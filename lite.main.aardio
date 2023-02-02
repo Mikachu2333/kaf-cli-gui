@@ -4,11 +4,10 @@ import fsys.dlg
 /*DSG{{*/
 mainForm = win.form(cls="kaf-cli-gui_FORM";text="kaf-cli-gui";right=521;bottom=285;acceptfiles=1;border="dialog frame";max=false)
 mainForm.add(
-align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=27};
+align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=26};
 author={cls="edit";left=340;top=130;right=496;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');multiline=1;z=7};
 bookname={cls="edit";left=50;top=130;right=282;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');z=5};
-button={cls="button";text="开始转换";left=414;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=23};
-button2={cls="button";text="加载kaf-cli";left=298;top=244;right=402;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=25};
+button={cls="button";text="开始转换";left=302;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=23};
 combobox={cls="combobox";left=162;top=170;right=206;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"em";"pm"};mode="dropdown";z=11};
 combobox2={cls="combobox";left=294;top=170;right=360;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"all";"epub";"mobi";"azw3"};mode="dropdown";z=14};
 combobox3={cls="combobox";left=458;top=210;right=502;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');items={"zh";"en";"de";"fr";"it";"es";"ja";"pt";"ru";"nl"};mode="dropdown";z=16};
@@ -17,7 +16,7 @@ indent={cls="edit";text="2";left=460;top=170;right=484;bottom=192;align="center"
 match={cls="edit";left=106;top=210;right=282;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');z=18};
 maxtitle={cls="edit";text="35";left=380;top=210;right=404;bottom=232;align="center";edge=1;font=LOGFONT(name='微软雅黑');num=1;z=20};
 outname={cls="edit";left=106;top=244;right=282;bottom=266;edge=1;font=LOGFONT(name='微软雅黑');z=22};
-plus={cls="plus";text="点此添加封面图片并预览";left=202;top=70;right=382;bottom=120;disabled=1;font=LOGFONT(h=-14;name='微软雅黑');notify=1;z=28};
+plus={cls="plus";text="点此添加封面图片并预览";left=202;top=70;right=382;bottom=120;font=LOGFONT(h=-14;name='微软雅黑');notify=1;z=27};
 space={cls="edit";text="1";left=130;top=170;right=160;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=9};
 static={cls="static";text="TXT文件路径";left=18;top=24;right=112;bottom=54;align="center";center=1;font=LOGFONT(h=-14;name='微软雅黑');transparent=1;z=2};
 static10={cls="static";text="标题最大字数";left=294;top=210;right=376;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=19};
@@ -31,7 +30,7 @@ static6={cls="static";text="输出格式";left=228;top=170;right=292;bottom=192;
 static7={cls="static";text="段首缩进";left=390;top=170;right=448;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=12};
 static8={cls="static";text="语言";left=420;top=210;right=454;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=15};
 static9={cls="static";text="标题正则识别";left=14;top=210;right=102;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=17};
-tips={cls="checkbox";text="是否添加kaf-cli教程";left=36;top=68;right=170;bottom=90;font=LOGFONT(name='微软雅黑');z=26}
+tips={cls="checkbox";text="是否添加kaf-cli教程";left=36;top=68;right=170;bottom=90;font=LOGFONT(name='微软雅黑');z=25}
 )
 /*}}*/
 
@@ -39,31 +38,17 @@ mainForm.plus.disabledText = "请先置入小说再添加封面"
 
 mainForm.show()
 
-exist_1,exist_2,pic_path = false,false,(io._exedir + "cover.png")
+pic_path = (io._exedir + "cover.png")
 
-if(io.exist(io.joinpath(io._exedir,"\kaf-cli.exe"))){
-	exist_1 = true
-}
-if(io.exist(io.joinpath(io._exedir,"\kindlegen.exe"))){
-	exist_2 = true
-}
-
-if(exist_1 and exist_2){
-	mainForm.button2.disabled = true
-}
-
-if(!(exist_1 : exist_2)){
-	mainForm.button.disabled = true
-	var temp = win.loadForm("/dlg/additional.aardio",,mainForm.hwnd)
-	temp.plus.text = /*首次使用需加载kaf-cli程序。
+var temp = win.loadForm("/dlg/additional.aardio",,mainForm.hwnd)
+temp.plus.text = /*首次使用需加载kaf-cli程序。
 直接将文本文档拖入主程序即可自动识别。
 
 若不指定封面，本程序将自动生成并使用文字封面。
 
 本程序仅为GUI界面，不含实际功能。
 原项目见“显示帮助”按钮。*/
-	temp.show(true)
-}
+temp.show(true)
 
 
 mainForm.onDropFiles = function(files){
@@ -212,7 +197,6 @@ mainForm.button.oncommand = function(id,event){
 			process.execute(path,args)
 			mainForm.plus.editable = false
 			mainForm.plus.disabledText = "请先置入小说再添加封面"
-			mainForm.button.disabled = false
 			mainForm.button.text = "开始转换"
 			mainForm.file_path.text = ""
 		},path,args,mainForm
@@ -220,20 +204,6 @@ mainForm.button.oncommand = function(id,event){
 	mainForm.button.disabledText = null
 	win.msgbox("成功",,,mainForm.hwnd)
 	
-}
-
-mainForm.button2.oncommand = function(id,event){
-	mainForm.button.disabled = false
-	mainForm.button2.disabled = true
-	if(!exist_1){
-		string.save(io.joinpath(io._exedir,"\kaf-cli.exe"),$"\res\kaf-cli.exe")
-		win.msgboxTimeout("kaf-cli成功！",,1000,,mainForm.hwnd)
-	}
-	
-	if(!exist_2){
-		string.save(io.joinpath(io._exedir,"\kindlegen.exe"),$"\res\kindlegen.exe")
-		win.msgboxTimeout("kindlegen成功！",,1000,,mainForm.hwnd)
-	}
 }
 
 return win.loopMessage()
