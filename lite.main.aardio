@@ -10,6 +10,7 @@ MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details.
 */
 import win.ui
+import fsys
 import fsys.dlg
 /*DSG{{*/
 mainForm = win.form(cls="kaf-cli-gui_FORM";text="kaf-cli-gui";right=521;bottom=285;acceptfiles=1;border="dialog frame";max=false)
@@ -20,7 +21,7 @@ bookname={cls="edit";left=50;top=130;right=282;bottom=152;edge=1;font=LOGFONT(na
 button={cls="button";text="开始转换";left=302;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=23};
 button2={cls="button";text="手动选择";left=426;top=16;right=502;bottom=60;font=LOGFONT(name='微软雅黑');z=28};
 combobox={cls="combobox";left=162;top=170;right=206;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"em";"pm"};mode="dropdown";z=11};
-combobox2={cls="combobox";left=294;top=170;right=360;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"all";"epub";"mobi";"azw3"};mode="dropdown";z=14};
+combobox2={cls="combobox";left=294;top=170;right=360;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"epub";"all";"mobi";"azw3"};mode="dropdown";z=14};
 combobox3={cls="combobox";left=458;top=210;right=502;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');items={"zh";"en";"de";"fr";"it";"es";"ja";"pt";"ru";"nl"};mode="dropdown";z=16};
 file_path={cls="edit";left=124;top=16;right=416;bottom=60;ah=1;autovscroll=false;aw=1;edge=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;multiline=1;z=1};
 indent={cls="edit";text="2";left=460;top=170;right=484;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=13};
@@ -52,18 +53,23 @@ mainForm.show()
 pic_path = (io._exedir + "cover.png")
 
 if(!io.exist(io._exedir + "\kaf-cli.exe")){
-	var temp = win.loadForm("/dlg/additional.aardio",,mainForm.hwnd)
-	temp.plus.text = /*首次使用需加载kaf-cli程序。
+	win.msgboxErr("首次使用需加载kaf-cli程序。
 直接将文本文档拖入主程序即可自动识别。
 
+您没有kaf-cli程序！本程序将自动退出！
+
 若不指定封面，本程序将自动生成并使用文字封面。
+请先置入文本文档再在目录添加 cover.png ！（或手动选择）
 
 本程序仅为GUI界面，不含实际功能。
-原项目见“显示帮助”按钮。*/
-	temp.show(true)
+原项目见“显示帮助”按钮。","Error")
+	mainForm.close()
 }
 
 input_file = function(mainForm){
+	if(io.exist(io._exedir + "cover.png")){
+		fsys.delete(io._exedir + "cover.png")
+	}
 	mainForm.plus.text = "点此添加封面图片并预览"
 	mainForm.plus.disabled = false
 	mainForm.bookname.text = io.splitpath(mainForm.file_path.text).name
@@ -176,47 +182,46 @@ create_pic = function(title){
 mainForm.button.oncommand = function(id,event){
 	mainForm.button.disabledText = {"✶";"✸";"✹";"✺";"✹";"✷"}
 	
-	if((pic_path != (io._exedir + "cover.png")) or io.exist(io._exedir + "cover.png")){
+	if((pic_path == (io._exedir + "cover.png")) and !io.exist(io._exedir + "cover.png")){
 		create_pic(mainForm.bookname.text)
 	}
 
 	path = tostring(io.joinpath(io._exedir,"kaf-cli.exe"))
-	io.open()
 	args = {
-	"-align" = mainForm.align.selText;
-	"-author" = ((mainForm.author.text != "") ? mainForm.author.text : "YSTYLE");
-	"-bookname" = ((mainForm.bookname.text != "") ? mainForm.bookname.text : io.splitpath(mainForm.file_path).name);
-	"-bottom" = (tostring(mainForm.space.text) + mainForm.combobox.selText);
-	"-cover" = pic_path;
-	"-filename" = mainForm.file_path.text;
-	"-format" = mainForm.combobox2.selText;
-	"-indent" = tonumber(mainForm.indent.text);
-	"-lang" = mainForm.combobox3.selText;
-	"-match" = mainForm.match.text;
-	"-max" = tonumber(mainForm.maxtitle.text);
-	"-out" = io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text);
-	"-tips" = tostring(mainForm.tips.checked)
+	"1" = "-align=" + mainForm.align.selText;
+	"2" = "-author=" + (((mainForm.author.text != "") ? mainForm.author.text : "YSTYLE"));
+	"3" = "-bookname=" + ((mainForm.bookname.text != "") ? mainForm.bookname.text : io.splitpath(mainForm.file_path).name);
+	"4" = "-bottom=" + (tostring(mainForm.space.text) + mainForm.combobox.selText);
+	"5" = "-cover=" + pic_path;
+	"6" = "-filename=" + mainForm.file_path.text;
+	"7" = "-format=" + mainForm.combobox2.selText;
+	"8" = "-indent=" + tonumber(mainForm.indent.text);
+	"9" = "-lang=" + mainForm.combobox3.selText;
+	"10" = "-match=" + mainForm.match.text;
+	"11" = "-max=" + tonumber(mainForm.maxtitle.text);
+	"12" = "-out=" + io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text);
+	"13" = "-tips=" + tostring(mainForm.tips.checked)
 	}
 	
+	if(args["10"] == "-match="){
+		args["10"] = null
+	}
+	
+	text_args = ""
 	for(i,j in args){
-		if(j == ""){
-			args[i] = null
-		}
+		text_args = text_args + j + " "
 	}
 	
 	thread.invoke(
-		function(path,args,mainForm){
-			import fsys
+		function(path,text_args,mainForm){
 			import win.ui
-			import process
-			process.execute(path,args)
+			raw.execute(path,text_args)
 			mainForm.plus.editable = false
 			mainForm.plus.disabledText = "请先置入小说再添加封面"
 			mainForm.button.text = "开始转换"
 			mainForm.file_path.text = ""
-			fsys.delete(io._exedir + "cover.png")
 			pic_path = (io._exedir + "cover.png")
-		},path,args,mainForm
+		},path,text_args,mainForm
 	)
 	mainForm.button.disabledText = null
 	win.msgbox("成功",,,mainForm.hwnd)
