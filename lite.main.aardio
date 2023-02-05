@@ -28,7 +28,7 @@ indent={cls="edit";text="2";left=460;top=170;right=484;bottom=192;align="center"
 match={cls="edit";left=106;top=210;right=282;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');z=18};
 maxtitle={cls="edit";text="35";left=380;top=210;right=404;bottom=232;align="center";edge=1;font=LOGFONT(name='微软雅黑');num=1;z=20};
 outname={cls="edit";left=106;top=244;right=282;bottom=266;edge=1;font=LOGFONT(name='微软雅黑');z=22};
-plus={cls="plus";text="点此添加封面图片并预览";left=202;top=70;right=382;bottom=120;font=LOGFONT(h=-14;name='微软雅黑');notify=1;z=27};
+plus={cls="plus";text="点此添加封面图片";left=202;top=70;right=382;bottom=120;font=LOGFONT(h=-14;name='微软雅黑');notify=1;z=27};
 space={cls="edit";text="1";left=130;top=170;right=160;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=9};
 static={cls="static";text="TXT文件路径";left=18;top=24;right=112;bottom=54;align="center";center=1;font=LOGFONT(h=-14;name='微软雅黑');transparent=1;z=2};
 static10={cls="static";text="标题最大字数";left=294;top=210;right=376;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=19};
@@ -70,17 +70,13 @@ input_file = function(mainForm){
 	if(io.exist(io._exedir + "cover.png")){
 		fsys.delete(io._exedir + "cover.png")
 	}
-	mainForm.plus.text = "点此添加封面图片并预览"
+	mainForm.plus.text = "点此添加封面图片"
 	mainForm.plus.disabled = false
 	mainForm.bookname.text = io.splitpath(mainForm.file_path.text).name
 	mainForm.outname.text = mainForm.bookname.text
 	mainForm.redraw()
     if(string.cmp(io.splitpath(mainForm.file_path.text).ext, ".txt")){
     	win.msgboxErr("请放入文本文档",,mainForm.hwnd)
-    	mainForm.file_path.text = ""
-    }
-    if(string.indexOf(mainForm.file_path.text," ")){
-    	win.msgboxErr("路径中不能有空格",,mainForm.hwnd)
     	mainForm.file_path.text = ""
     }
 }
@@ -97,15 +93,6 @@ get_pic = function(){
 			create_pic(mainForm.bookname.text)
 			return (io._exedir +  "cover.png")
 		}
-	} else {
-		mainForm.plus.editable = true
-		mainForm.plus.text = temp
-		temp_form = win.loadForm("/dlg/additional.aardio",,mainForm)
-		temp_form.plus.editable = false
-		temp_form.plus.background = temp
-		temp_form.plus.redraw()
-		temp_form.show(true)
-		return temp 
 	}
 }
 
@@ -170,7 +157,6 @@ EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
 MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details.
 */
-	temp.show(true)
 }
 
 create_pic = function(title){
@@ -206,21 +192,20 @@ mainForm.button.oncommand = function(id,event){
 	if((pic_path == (io._exedir + "cover.png")) and !io.exist(io._exedir + "cover.png")){
 		create_pic(mainForm.bookname.text)
 	}
-
 	path = tostring(io.joinpath(io._exedir,"kaf-cli.exe"))
 	args = {
 	"1" = "-align=" + mainForm.align.selText;
 	"2" = "-author=" + (((mainForm.author.text != "") ? mainForm.author.text : "YSTYLE"));
-	"3" = "-bookname=" + ((mainForm.bookname.text != "") ? mainForm.bookname.text : io.splitpath(mainForm.file_path).name);
+	"3" = "-bookname=""" + ((mainForm.bookname.text != "") ? mainForm.bookname.text : io.splitpath(mainForm.file_path).name) + """";
 	"4" = "-bottom=" + (tostring(mainForm.space.text) + mainForm.combobox.selText);
 	"5" = "-cover=" + pic_path;
-	"6" = "-filename=" + mainForm.file_path.text;
+	"6" = "-filename=""" + mainForm.file_path.text + """";
 	"7" = "-format=" + mainForm.combobox2.selText;
 	"8" = "-indent=" + mainForm.indent.text;
 	"9" = "-lang=" + mainForm.combobox3.selText;
 	"10" = "-match=" + mainForm.match.text;
 	"11" = "-max=" + mainForm.maxtitle.text;
-	"12" = "-out=" + io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text);
+	"12" = "-out=""" + io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text) + """";
 	"13" = "-tips=" + tostring(mainForm.tips.checked)
 	}
 	
@@ -232,7 +217,7 @@ mainForm.button.oncommand = function(id,event){
 	for(i,j in args){
 		text_args = text_args + j + " "
 	}
-	
+
 	thread.invoke(
 		function(path,text_args,mainForm){
 			import win.ui
@@ -246,7 +231,6 @@ mainForm.button.oncommand = function(id,event){
 	)
 	mainForm.button.disabledText = null
 	win.msgbox("成功",,,mainForm.hwnd)
-	
 }
 
 mainForm.button2.oncommand = function(id,event){
