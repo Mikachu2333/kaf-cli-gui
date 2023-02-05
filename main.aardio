@@ -159,6 +159,28 @@ Usage of kaf-cli.exe:
         输出文件名，不需要包含格式后缀
   -tips
         添加本软件教程 (default true)
+
+原软件许可证：
+Copyright (c) [2019] [YSTYLE]
+[kaf-cli] is licensed under the Mulan PSL v1.
+You can use this software according to the terms and conditions of the Mulan PSL v1.
+You may obtain a copy of Mulan PSL v1 at:
+  http://license.coscl.org.cn/MulanPSL
+THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+PURPOSE.
+See the Mulan PSL v1 for more details.
+
+本软件许可证：
+Copyright (c) [2023] [MIKACHU2333]
+[kaf-cli-gui-full] is licensed under Mulan PSL v2.
+You can use this software according to the terms and conditions of the Mulan PSL v2.
+You may obtain a copy of Mulan PSL v2 at:
+         http://license.coscl.org.cn/MulanPSL2
+THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+See the Mulan PSL v2 for more details.
 */
 	temp.show(true)
 }
@@ -178,7 +200,6 @@ create_pic = function(title){
 	var gdi_fontfmt = gdi_font.createFont(45,0/*_FontStyleRegular*/,2/*_GdipUnitPixel*/)
 	var gdi_fmt = gdip.stringformat()
 	gdi_fmt.align = 1
-	//gdi_fmt.lineAlign = 1/*_StringAlignmentCenter*/ ;
 	var gdi_rc = gdip.RECTF()
 	gdi_rc.x = 0
 	gdi_rc.y = 60
@@ -190,6 +211,7 @@ create_pic = function(title){
 
 	temp_pic.save(io._exedir + "cover.png")
 }
+
 
 mainForm.button.oncommand = function(id,event){
 	mainForm.button.disabledText = {"✶";"✸";"✹";"✺";"✹";"✷"}
@@ -207,10 +229,10 @@ mainForm.button.oncommand = function(id,event){
 	"5" = "-cover=" + pic_path;
 	"6" = "-filename=" + mainForm.file_path.text;
 	"7" = "-format=" + mainForm.combobox2.selText;
-	"8" = "-indent=" + tonumber(mainForm.indent.text);
+	"8" = "-indent=" + mainForm.indent.text;
 	"9" = "-lang=" + mainForm.combobox3.selText;
 	"10" = "-match=" + mainForm.match.text;
-	"11" = "-max=" + tonumber(mainForm.maxtitle.text);
+	"11" = "-max=" + mainForm.maxtitle.text;
 	"12" = "-out=" + io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text);
 	"13" = "-tips=" + tostring(mainForm.tips.checked)
 	}
