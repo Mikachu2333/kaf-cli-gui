@@ -93,6 +93,10 @@ get_pic = function(){
 			create_pic(mainForm.bookname.text)
 			return (io._exedir +  "cover.png")
 		}
+	} else {
+		mainForm.plus.editable = true
+		mainForm.plus.text = temp
+		return temp 
 	}
 }
 
