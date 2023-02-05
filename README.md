@@ -1,5 +1,6 @@
 # kaf-cli-gui
-## kaf-cli的衍生品，实现图形化界面。另有新增功能自动生成文字封面。
+## kaf-cli的衍生品，已实现图形化界面。另有新增功能自动生成文字封面。
+### 支持kaf-cli的全部功能如txt转epub,txt转mobi等。（txt to epub, txt to mobi,etc.）
 ## 关于报毒
 本程序一切都是开源的，您如果不放心微软报毒也可以自行编译，主文件只有一个main.aardio，引用库都有写，如果不信任本软件请直接关掉，谢谢。如果Microsoft defender频繁报毒，请尝试安装其他安全软件如火绒等。
 
