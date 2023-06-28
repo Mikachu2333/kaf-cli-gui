@@ -13,58 +13,58 @@ import win.ui
 import fsys
 import fsys.dlg
 /*DSG{{*/
-mainForm = win.form(cls="kaf-cli-gui_FORM";text="kaf-cli-gui";right=521;bottom=285;acceptfiles=1;border="dialog frame";max=false)
+mainForm = win.form(cls="kaf-cli-gui_FORM";text="kaf-cli-gui";right=521;bottom=311;acceptfiles=1;border="dialog frame";max=false)
 mainForm.add(
-align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=26};
-author={cls="edit";left=340;top=130;right=496;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');multiline=1;z=7};
-bookname={cls="edit";left=50;top=130;right=282;bottom=152;edge=1;font=LOGFONT(name='微软雅黑');z=5};
-button={cls="button";text="开始转换";left=302;top=244;right=504;bottom=266;default=1;font=LOGFONT(name='微软雅黑');z=23};
-button2={cls="button";text="手动选择";left=426;top=16;right=502;bottom=60;font=LOGFONT(name='微软雅黑');z=28};
-combobox={cls="combobox";left=162;top=170;right=206;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"em";"pm"};mode="dropdown";z=11};
-combobox2={cls="combobox";left=294;top=170;right=360;bottom=192;edge=1;font=LOGFONT(name='微软雅黑');items={"epub";"all";"mobi";"azw3"};mode="dropdown";z=14};
-combobox3={cls="combobox";left=458;top=210;right=502;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');items={"zh";"en";"de";"fr";"it";"es";"ja";"pt";"ru";"nl"};mode="dropdown";z=16};
-file_path={cls="edit";left=124;top=16;right=416;bottom=60;ah=1;autovscroll=false;aw=1;edge=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;multiline=1;z=1};
-indent={cls="edit";text="2";left=460;top=170;right=484;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=13};
-match={cls="edit";left=106;top=210;right=282;bottom=232;edge=1;font=LOGFONT(name='微软雅黑');z=18};
-maxtitle={cls="edit";text="35";left=380;top=210;right=404;bottom=232;align="center";edge=1;font=LOGFONT(name='微软雅黑');num=1;z=20};
-outname={cls="edit";left=106;top=244;right=282;bottom=266;edge=1;font=LOGFONT(name='微软雅黑');z=22};
-plus={cls="plus";text="点此添加封面图片";left=202;top=70;right=382;bottom=120;font=LOGFONT(h=-14;name='微软雅黑');notify=1;z=27};
-space={cls="edit";text="1";left=130;top=170;right=160;bottom=192;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=9};
-static={cls="static";text="TXT文件路径";left=18;top=24;right=112;bottom=54;align="center";center=1;font=LOGFONT(h=-14;name='微软雅黑');transparent=1;z=2};
-static10={cls="static";text="标题最大字数";left=294;top=210;right=376;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=19};
-static11={cls="static";text="显示帮助";left=408;top=70;right=502;bottom=120;align="center";center=1;font=LOGFONT(h=-16;name='微软雅黑');frame=1;notify=1;transparent=1;z=24};
-static12={cls="static";text="输出文件名";left=14;top=244;right=102;bottom=266;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=21};
-static2={cls="static";text="标题居中方式";left=20;top=98;right=106;bottom=120;align="center";center=1;font=LOGFONT(name='微软雅黑');group=1;transparent=1;z=3};
-static3={cls="static";text="段落间距(em/pm)";left=10;top=170;right=124;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=8};
-static4={cls="static";text="书名";left=8;top=130;right=48;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=4};
-static5={cls="static";text="作者";left=300;top=130;right=336;bottom=152;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=6};
-static6={cls="static";text="输出格式";left=228;top=170;right=292;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=10};
-static7={cls="static";text="段首缩进";left=390;top=170;right=448;bottom=192;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=12};
-static8={cls="static";text="语言";left=420;top=210;right=454;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=15};
-static9={cls="static";text="标题正则识别";left=14;top=210;right=102;bottom=232;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=17};
-tips={cls="checkbox";text="是否添加kaf-cli教程";left=36;top=68;right=170;bottom=90;font=LOGFONT(name='微软雅黑');z=25}
+align={cls="combobox";left=118;top=98;right=184;bottom=120;edge=1;font=LOGFONT(name='微软雅黑');items={"center";"left";"right"};mode="dropdown";z=25};
+author={cls="edit";left=340;top=159;right=496;bottom=181;edge=1;font=LOGFONT(name='微软雅黑');multiline=1;z=6};
+bookname={cls="edit";left=50;top=159;right=282;bottom=181;edge=1;font=LOGFONT(name='微软雅黑');z=4};
+button={cls="button";text="开始转换";left=295;top=273;right=504;bottom=295;border=1;default=1;font=LOGFONT(name='微软雅黑');z=22};
+button3={cls="button";text="手动选择";left=426;top=16;right=502;bottom=60;font=LOGFONT(name='微软雅黑');z=28};
+button4={cls="button";text="选择字体";left=50;top=128;right=259;bottom=150;font=LOGFONT(name='微软雅黑');z=30};
+combobox={cls="combobox";left=154;top=199;right=198;bottom=221;edge=1;font=LOGFONT(name='微软雅黑');items={"em";"pm"};mode="dropdown";z=10};
+combobox2={cls="combobox";left=270;top=199;right=336;bottom=221;edge=1;font=LOGFONT(name='微软雅黑');items={"epub";"all";"mobi";"azw3"};mode="dropdown";z=13};
+combobox3={cls="combobox";left=458;top=239;right=502;bottom=261;edge=1;font=LOGFONT(name='微软雅黑');items={"zh";"en";"de";"fr";"it";"es";"ja";"pt";"ru";"nl"};mode="dropdown";z=15};
+file_path={cls="edit";left=124;top=16;right=416;bottom=60;ah=1;autovscroll=false;aw=1;edge=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;multiline=1;z=27};
+indent={cls="edit";text="2";left=408;top=198;right=432;bottom=220;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=12};
+match={cls="edit";left=106;top=239;right=282;bottom=261;edge=1;font=LOGFONT(name='微软雅黑');z=17};
+maxtitle={cls="edit";text="35";left=380;top=239;right=404;bottom=261;align="center";edge=1;font=LOGFONT(name='微软雅黑');num=1;z=19};
+outname={cls="edit";left=106;top=273;right=282;bottom=295;edge=1;font=LOGFONT(name='微软雅黑');z=21};
+plus={cls="plus";text="点此添加封面图片";left=319;top=70;right=499;bottom=120;disabled=1;font=LOGFONT(h=-14;name='微软雅黑');hscroll=1;notify=1;z=26};
+row_heigh={cls="edit";text="1.5";left=478;top=198;right=502;bottom=220;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=32};
+space={cls="edit";text="1";left=122;top=199;right=152;bottom=221;align="center";edge=1;font=LOGFONT(name='微软雅黑');multiline=1;num=1;z=8};
+static={cls="static";text="TXT文件路径";left=18;top=24;right=112;bottom=54;align="center";center=1;font=LOGFONT(h=-14;name='微软雅黑');transparent=1;z=1};
+static10={cls="static";text="标题最大字数";left=294;top=239;right=376;bottom=261;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=18};
+static11={cls="static";text="显示帮助";left=203;top=69;right=297;bottom=119;align="center";center=1;font=LOGFONT(h=-16;name='微软雅黑');frame=1;notify=1;transparent=1;z=23};
+static12={cls="static";text="输出文件名";left=14;top=273;right=102;bottom=295;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=20};
+static13={cls="static";text="字体";left=10;top=128;right=48;bottom=150;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=29};
+static14={cls="static";text="行高";left=444;top=198;right=477;bottom=220;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=31};
+static2={cls="static";text="标题居中方式";left=20;top=98;right=106;bottom=120;align="center";center=1;font=LOGFONT(name='微软雅黑');group=1;transparent=1;z=2};
+static3={cls="static";text="段落间距(em/pm)";left=10;top=199;right=121;bottom=221;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=7};
+static4={cls="static";text="书名";left=8;top=159;right=48;bottom=181;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=3};
+static5={cls="static";text="作者";left=300;top=159;right=336;bottom=181;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=5};
+static6={cls="static";text="输出格式";left=209;top=199;right=268;bottom=221;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=9};
+static7={cls="static";text="段首缩进";left=349;top=198;right=407;bottom=220;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=11};
+static8={cls="static";text="语言";left=420;top=239;right=454;bottom=261;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=14};
+static9={cls="static";text="标题正则识别";left=14;top=239;right=102;bottom=261;align="center";center=1;font=LOGFONT(name='微软雅黑');transparent=1;z=16};
+tips={cls="checkbox";text="是否添加kaf-cli教程";left=36;top=68;right=170;bottom=90;font=LOGFONT(name='微软雅黑');z=24}
 )
 /*}}*/
 
 mainForm.plus.disabledText = "请先置入小说再添加封面"
-
 mainForm.show()
 
-pic_path = (io._exedir + "cover.png")
+font_path = ""
+pic_path = io._exedir + "cover.png"
 
-if(!io.exist(io._exedir + "\kaf-cli.exe")){
-	win.msgboxErr("首次使用需加载kaf-cli程序。
+var temp = win.loadForm("/dlg/additional.aardio",,mainForm.hwnd)
+temp.plus.text = /*首次使用需加载kaf-cli程序。
 直接将文本文档拖入主程序即可自动识别。
-
-您没有kaf-cli程序！本程序将自动退出！
 
 若不指定封面，本程序将自动生成并使用文字封面。
 请先置入文本文档再在目录添加 cover.png ！（或手动选择）
 
 本程序仅为GUI界面，不含实际功能。
-原项目见“显示帮助”按钮。","Error")
-	mainForm.close()
-}
+原项目见“显示帮助”按钮。*/
 
 input_file = function(mainForm){
 	if(io.exist(io._exedir + "cover.png")){
@@ -89,11 +89,13 @@ mainForm.onDropFiles = function(files){
 get_pic = function(){
 	var temp = fsys.dlg.open("封面图片|*.png;*.jpg|","请选择封面图片",,mainForm.hwnd,,)
 	if(temp == null){
-		if(win.msgbox("未获取到路径，是否创建封面？","Error",4,mainForm.hwnd) == 6){
+		if(win.msgbox('未获取到路径\n选是：创建封面；选否：使用orly风格封面（需联网）',"Error",4,mainForm.hwnd) == 6){
 			create_pic(mainForm.bookname.text)
-			return (io._exedir +  "cover.png")
+			return (io._exedir + "cover.png")
+		}else{
+			return "orly" 	
 		}
-	} else {
+	}else{
 		mainForm.plus.editable = true
 		mainForm.plus.text = temp
 		return temp 
@@ -102,6 +104,7 @@ get_pic = function(){
 
 
 mainForm.plus.oncommand = function(id,event){
+	win.msgbox('如果自动生成封面请先修改书名\n如果希望设置orly风格封面请联网\n并在首次选择封面时直接关闭该窗口',"Tip",,mainForm.hwnd)
 	pic_path = get_pic()
 }
 
@@ -111,9 +114,9 @@ mainForm.static11.oncommand = function(id,event){
 原项目地址：https://github.com/ystyle/kaf-cli
 
 详述（源自原项目）：
-Usage of kaf-cli.exe:
+Usage of kaf-cli:
   -align string
-        标题对齐方式: left、center、righ (default "center")
+        标题对齐方式: left、center、righ。环境变量KAF_CLI_ALIGN可修改默认值 (default "center")
   -author string
         作者 (default "YSTYLE")
   -bookname string
@@ -121,23 +124,35 @@ Usage of kaf-cli.exe:
   -bottom string
         段落间距(单位可以为em、px) (default "1em")
   -cover string
-        封面图片 (default "cover.png")
+        封面图片可为: 本地图片, 和orly。 设置为orly时生成orly风格的封面, 需要连接网络。 (default "cover.png")
+  -cover-orly-color string
+        orly封面的主题色, 可以为1-16和hex格式的颜色代码, 不填时随机
+  -cover-orly-idx int
+        orly封面的动物, 可以为0-41, 不填时随机, 具体图案可以查看: https://orly.nanmu.me (default -1)
   -filename string
         txt 文件名
+  -font string
+        嵌入字体, 之后epub的正文都将使用该字体
   -format string
-        书籍格式: all、epub、mobi、azw3 (default "all")
+        书籍格式: all、epub、mobi、azw3。环境变量KAF_CLI_FORMAT可修改默认值 (default "all")
   -indent uint
         段落缩进字数 (default 2)
   -lang string
-        设置语言: en,de,fr,it,es,zh,ja,pt,ru,nl。 环境变量KAF_CLI_LANG可修改默认值 (default "zh")
+        设置语言: en,de,fr,it,es,zh,ja,pt,ru,nl。环境变量KAF_CLI_LANG可修改默认值 (default "en")
+  -line-height string
+        行高(用于设置行间距, 默认为1.5rem)
   -match string
-        匹配标题的正则表达式, 不写可以自动识别, 如果没生成章节就参考教程。例: -match 第.{1,8}章 表示第和章字之间可以有1-8个任意文字 (default "自动匹配,可自定义")
+        匹配标题的正则表达式, 不写可以自动识别, 如果没生成章节就参考教程。例: -match 第.{1,8}章 表示第和章字之间可以有1-8个任意文字
   -max uint
         标题最大字数 (default 35)
   -out string
         输出文件名，不需要包含格式后缀
   -tips
         添加本软件教程 (default true)
+  -unknow-title string
+        未知章节默认名称 (default "章节正文")
+  -volume-match string
+        卷匹配规则 (default "^第[0-9一二三四五六七八九十零〇百千两 ]+[卷部]")
 
 原软件许可证：
 Copyright (c) [2019] [YSTYLE]
@@ -190,6 +205,7 @@ create_pic = function(title){
 	temp_pic.save(io._exedir + "cover.png")
 }
 
+
 mainForm.button.oncommand = function(id,event){
 	mainForm.button.disabledText = {"✶";"✸";"✹";"✺";"✹";"✷"}
 	
@@ -199,10 +215,10 @@ mainForm.button.oncommand = function(id,event){
 	path = tostring(io.joinpath(io._exedir,"kaf-cli.exe"))
 	args = {
 	"1" = "-align=" + mainForm.align.selText;
-	"2" = "-author=" + (((mainForm.author.text != "") ? mainForm.author.text : "YSTYLE"));
+	"2" = "-author=""" + (((mainForm.author.text != "") ? (mainForm.author.text + """") : "YSTYLE"""));
 	"3" = "-bookname=""" + ((mainForm.bookname.text != "") ? mainForm.bookname.text : io.splitpath(mainForm.file_path).name) + """";
 	"4" = "-bottom=" + (tostring(mainForm.space.text) + mainForm.combobox.selText);
-	"5" = "-cover=" + pic_path;
+	"5" = "-cover=""" + pic_path + """";
 	"6" = "-filename=""" + mainForm.file_path.text + """";
 	"7" = "-format=" + mainForm.combobox2.selText;
 	"8" = "-indent=" + mainForm.indent.text;
@@ -210,18 +226,23 @@ mainForm.button.oncommand = function(id,event){
 	"10" = "-match=" + mainForm.match.text;
 	"11" = "-max=" + mainForm.maxtitle.text;
 	"12" = "-out=""" + io.joinpath(io.splitpath(mainForm.file_path.text).dir,mainForm.bookname.text) + """";
-	"13" = "-tips=" + tostring(mainForm.tips.checked)
+	"13" = "-tips=" + tostring(mainForm.tips.checked);
+	"14" = "-font=""" + font_path + """";
+	"15" = "-line-height=" + tostring(mainForm.row_heigh.text);
 	}
 	
 	if(args["10"] == "-match="){
 		args["10"] = null
+	}
+	if(args["14"] == "-font=""选择字体"""){
+		args["14"] = null
 	}
 	
 	text_args = ""
 	for(i,j in args){
 		text_args = text_args + j + " "
 	}
-
+	win.msgbox(text_args)
 	thread.invoke(
 		function(path,text_args,mainForm){
 			import win.ui
@@ -237,9 +258,14 @@ mainForm.button.oncommand = function(id,event){
 	win.msgbox("成功",,,mainForm.hwnd)
 }
 
-mainForm.button2.oncommand = function(id,event){
+mainForm.button3.oncommand = function(id,event){
 	mainForm.file_path.text = fsys.dlg.open("文本文档|*.txt|","选择小说",,mainForm.hwnd,,)
 	input_file(mainForm)
+}
+
+mainForm.button4.oncommand = function(id,event){
+	font_path = fsys.dlg.open("字体|*.otf;*.ttf","选择字体",,mainForm.hwnd)
+	mainForm.button4.text = io.splitpath(font_path).name
 }
 
 return win.loopMessage()
