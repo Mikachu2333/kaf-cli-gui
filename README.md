@@ -1,5 +1,5 @@
 # kaf-cli-gui
-## kaf-cli的衍生品(kaf-cli:ver1.3.4)，已实现图形化界面。另有新增功能自动生成文字封面。
+## kaf-cli的衍生品(kaf-cli:ver1.3.5)，已实现图形化界面。另有新增功能自动生成文字封面。
 [kaf-cli](https://github.com/ystyle/kaf-cli)
 ### 支持kaf-cli的全部功能如txt转epub,txt转mobi等。（txt to epub, txt to mobi,etc. txt2epub, txt2mobi）
 ## 关于报毒
