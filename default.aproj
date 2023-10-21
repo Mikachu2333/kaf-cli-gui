@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project ver="10" name="kaf-cli-gui-lite" libEmbed="true" icon="..." ui="win" output="kaf-cli-gui-lite.exe" CompanyName="None" FileDescription="kaf-cli-gui-lite" LegalCopyright="Copyright (C) Mikachu2333 2023" ProductName="kaf-cli-gui-lite" InternalName="kaf-cli-gui-lite" FileVersion="1.1.7.53" ProductVersion="1.1.7.53" publishDir="/dist/" dstrip="true">
+<project ver="10" name="kaf-cli-gui-full" libEmbed="true" icon="F.ico" ui="win" output="kaf-cli_gui-full.exe" CompanyName="GitHub" FileDescription="kaf-cli-gui-full" LegalCopyright="Copyright (C) Mika 2023 Mulan PSL v2 License" ProductName="kaf-cli-gui-full" InternalName="kaf-cli-gui-full" FileVersion="1.2.9.60" ProductVersion="1.2.9.60" publishDir="/dist/" dstrip="true">
+	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false"/>
 	<folder name="窗体文件" path="dlg" comment="目录" embed="true" local="false" ignored="false">
 		<file name="additional.aardio" path="dlg\additional.aardio" comment="dlg\help.aardio"/>
 	</folder>
-	<file name="lite.main.aardio" path="lite.main.aardio" comment="lite.main.aardio"/>
 </project>
